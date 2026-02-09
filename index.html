@@ -135,6 +135,10 @@
   <div id="print-area"></div>
 
   <script>
+    // ثوابت
+    const WEEK_ROWS = 14; // عدد أسطر جدول المالية لكل أسبوع
+
+    // الأحداث الثابتة
     const events = {
       "1-11": "مناسبة: ذكرى تولي جلالة السلطان هيثم بن طارق المعظم",
       "1-15": "مناسبة: ذكرى الإسراء والمعراج",
@@ -144,8 +148,10 @@
       "3-30": "مناسبة: عيد الفطر السعيد (تقديرياً)"
     };
 
+    // الأشهر المتاحة
     const monthNames = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو"];
 
+    // الحصص
     const scheduleTimes = [
       "7:35 ص - 8:15 ص",
       "8:20 ص - 9:00 ص",
@@ -158,6 +164,7 @@
       "1:10 م - 1:50 م"
     ];
 
+    // صور الشعار والصورة الشخصية من LocalStorage
     let ministryLogoDataUrl = localStorage.getItem('ministryLogo') || "";
     let userPhotoDataUrl = localStorage.getItem('userPhoto') || "";
 
@@ -166,11 +173,13 @@
       if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
+    // يوم الراتب
     function getSalaryDay(m) {
       let d = new Date(2026, m, 23);
       return (d.getDay() === 5 || d.getDay() === 6) ? 21 : 23;
     }
 
+    // تقويم صغير
     function buildMiniCal(m) {
       let html = `<div class="mini-month">
         <div class="mini-month-title" onclick="scrollToId('month-fin-${m}')">${monthNames[m]}</div>
@@ -202,6 +211,7 @@
       return html + `</table></div>`;
     }
 
+    // ترويسة اليوم
     function headerHTML(m, day) {
       return `
       <header>
@@ -220,17 +230,55 @@
       </header>`;
     }
 
+    // تقسيم شهر إلى 4 أسابيع (1–7, 8–14, 15–21, 22–آخر الشهر)
+    function getWeekRanges(m) {
+      const last = new Date(2026, m + 1, 0).getDate();
+      return [
+        { w: 1, s: 1,  e: Math.min(7,  last) },
+        { w: 2, s: 8,  e: Math.min(14, last) },
+        { w: 3, s: 15, e: Math.min(21, last) },
+        { w: 4, s: 22, e: last }
+      ];
+    }
+
+    // جدول المالية الأسبوعي
+    function buildWeekFinanceTable() {
+      const rows = Array(WEEK_ROWS).fill('<tr><td></td><td></td><td></td><td></td></tr>').join('');
+      return `
+        <table class="finance-table">
+          <thead>
+            <tr><th>التاريخ</th><th>البيان</th><th>صرف</th><th>دخل</th></tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    }
+
+    // صفحة مالية أسبوعية واحدة
+    function weekFinancePage(m, weekObj) {
+      const rangeLabel = `الأسبوع ${weekObj.w} (${weekObj.s}–${weekObj.e})`;
+      return `
+        <div class="page-container">
+          <div class="section-header" style="background:var(--salary-green)">
+            الملخص المالي لشهر ${monthNames[m]} - ${rangeLabel}
+          </div>
+          ${buildWeekFinanceTable()}
+          <footer><div class="signature-fluid">Mo.Yasin</div></footer>
+        </div>`;
+    }
+
     function generate() {
       const area = document.getElementById('print-area');
       let output = '';
 
+      // صفحات الأيام
       for (let m = 0; m < monthNames.length; m++) {
         let daysInMonth = new Date(2026, m + 1, 0).getDate();
 
         for (let day = 1; day <= daysInMonth; day++) {
           let d = new Date(2026, m, day);
-          let weekDay = d.getDay();
+          let weekDay = d.getDay(); // 0 الأحد ... 6 السبت
 
+          // استبعاد الجمعة والسبت
           if (weekDay !== 5 && weekDay !== 6) {
             const dateKey = `${m+1}-${day}`;
             const dayNameAr = ["الأحد", "الأثنين", "الثلاثاء", "الأربعاء", "الخميس"][weekDay];
@@ -270,33 +318,29 @@
           }
         }
 
-        // Spread الماليات الشهري
+        // صفحات المالية الأسبوعية (4 صفحات = صفحتان في كل spread)
+        const weeks = getWeekRanges(m);
+
+        // Spread 1: أسبوع 1 + أسبوع 2 (هذا هو الهدف الذي تشير له التقاويم المصغرة)
         output += `
-        <div class="spread-container" id="month-fin-${m}">
-          <div class="page-container">
-            <div class="section-header" style="background:var(--salary-green)">الملخص المالي لشهر ${monthNames[m]}</div>
-            <table class="finance-table">
-              <thead><tr><th>التاريخ</th><th>البيان</th><th>صرف</th><th>دخل</th></tr></thead>
-              <tbody>${Array(18).fill('<tr><td></td><td></td><td></td><td></td></tr>').join('')}</tbody>
-            </table>
-            <footer><div class="signature-fluid">Mo.Yasin</div></footer>
-          </div>
-          <div class="page-container">
-            <div class="section-header">ملاحظات الميزانية والمشتريات</div>
-            <div class="notes-area"><div class="lines"></div></div>
-            <div style="padding:20px; display:flex; justify-content:center; flex-direction:column; align-items:center;">
-              <p style="font-family:'Cairo'; font-weight:bold; color:var(--royal-navy)">تقويم الشهر</p>
-              ${buildMiniCal(m)}
-            </div>
-            <footer><span>الفنون التشكيلية</span><span>2026</span></footer>
-          </div>
-        </div>`;
+          <div class="spread-container" id="month-fin-${m}">
+            ${weekFinancePage(m, weeks[0])}
+            ${weekFinancePage(m, weeks[1])}
+          </div>`;
+
+        // Spread 2: أسبوع 3 + أسبوع 4
+        output += `
+          <div class="spread-container" id="month-fin-${m}-2">
+            ${weekFinancePage(m, weeks[2])}
+            ${weekFinancePage(m, weeks[3])}
+          </div>`;
       }
 
       area.innerHTML = output;
       updateImages();
     }
 
+    // تحديث جميع الصور
     function updateImages() {
       if (ministryLogoDataUrl) {
         document.querySelectorAll('.ministry-logo').forEach(img => img.src = ministryLogoDataUrl);
@@ -310,6 +354,7 @@
       }
     }
 
+    // تحميل الصور محليًا وتخزينها
     function handleImageUpload(input, type) {
       const file = input.files && input.files[0];
       if (!file) return;
@@ -327,12 +372,11 @@
       reader.readAsDataURL(file);
     }
 
+    // ربط الأحداث عند التحميل + توليد تلقائي
     window.addEventListener('DOMContentLoaded', () => {
       document.getElementById('logo-input')?.addEventListener('change', (e) => handleImageUpload(e.target, 'logo'));
       document.getElementById('photo-input')?.addEventListener('change', (e) => handleImageUpload(e.target, 'photo'));
-
-      // ✅ توليد السجل تلقائيًا عند فتح الصفحة
-      generate();
+      generate(); // توليد تلقائي
     });
   </script>
 </body>
