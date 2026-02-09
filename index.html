@@ -2,298 +2,343 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>سجل الإبداع الفني 2026 - الإصدار الفاخر</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@400;700;900&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <title>سجل الفنون التشكيلية 2026 - الإصدار التفاعلي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700;900&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
     <style>
         :root {
-            --classic-navy: #0f172a;
-            --classic-gold: #b45309;
-            --classic-ruby: #7f1d1d;
-            --line-color: #e2e8f0;
-            --premium-gold: #d4af37;
-            --highlight-week: rgba(212, 175, 55, 0.15);
-            --event-color: #fbbf24;
+            --vintage-paper: #fdfaf3;
+            --royal-navy: #1a2e44;
+            --antique-gold: #9d7e3d;
+            --deep-ruby: #631d1d;
+            --line-tan: #e5dcc5;
+            --salary-green: #2d5a27;
+            --weekend-bg: #f0f2f5;
         }
 
         @media print {
             .no-print { display: none !important; }
             body { background: white !important; padding: 0 !important; }
-            .page-container { margin: 0 !important; page-break-after: always !important; -webkit-print-color-adjust: exact; }
+            .spread-container { page-break-after: always !important; display: flex !important; }
             @page { size: A4 landscape; margin: 0; }
         }
 
-        body { background: #1e293b; font-family: 'Tajawal', sans-serif; margin: 0; padding: 10px; }
-        .dashboard { max-width: 500px; margin: 0 auto 15px; background: #fff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid var(--classic-gold); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .btn-modern { background: var(--classic-navy); color: #fff; border: none; padding: 12px 35px; cursor: pointer; font-weight: 700; border-radius: 5px; font-size: 16px; transition: 0.3s; }
-        .btn-modern:hover { background: var(--classic-ruby); }
+        body { background: #334155; font-family: 'Amiri', serif; margin: 0; padding: 20px; scroll-behavior: smooth; }
 
+        /* شريط الأدوات العائم */
+        .dashboard {
+            position: sticky; top: 10px; z-index: 1000;
+            max-width: 900px; margin: 0 auto 30px;
+            background: rgba(255, 255, 255, 0.95); padding: 15px;
+            border-radius: 15px; text-align: center;
+            border: 3px double var(--antique-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-premium { background: var(--royal-navy); color: #fff; border: 2px solid var(--antique-gold); padding: 10px 18px; cursor: pointer; font-family: 'Cairo'; font-weight: 700; border-radius: 8px; transition: 0.3s; display:inline-flex; align-items:center; gap:8px; }
+        .btn-premium:hover { background: var(--antique-gold); color: var(--royal-navy); }
+        .btn-premium input[type="file"] { display:none; }
+
+        .preview-row { display:flex; justify-content:center; align-items:center; gap:14px; margin-top:8px; flex-wrap:wrap; }
+
+        .spread-container { display: flex; justify-content: center; gap: 0; margin-bottom: 40px; }
         .page-container {
-            width: 297mm; height: 210mm; background: white; margin: 5px auto; padding: 8mm 10mm;
-            box-sizing: border-box; display: flex; flex-direction: column; position: relative; border: 1px solid #eee;
+            width: 148.5mm; height: 210mm; background: var(--vintage-paper);
+            padding: 8mm; box-sizing: border-box; display: flex; flex-direction: column;
+            position: relative; border: 1px solid #d1c7a7;
         }
 
-        header { display: grid; grid-template-columns: 1.5fr 2fr 1.5fr; align-items: center; height: 110px; border-bottom: 3px solid var(--classic-navy); margin-bottom: 12px; }
-        .logo-box { display: flex; align-items: center; gap: 12px; }
-        .myh-logo {
-            background: var(--classic-navy); color: var(--premium-gold);
-            width: 55px; height: 55px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Georgia', serif; font-weight: 900; font-size: 22px;
-            border: 2px solid var(--premium-gold);
-        }
-        
-        .official-name { font-family: 'Cairo', sans-serif; font-size: 18px; font-weight: 900; color: var(--classic-navy); white-space: nowrap; }
-        .official-name span { display: block; color: var(--classic-gold); font-size: 12px; font-weight: 700; margin-top: -2px; }
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--antique-gold); margin-bottom: 5px; gap:10px; }
+        .initials-logo { font-family: 'Mrs Saint Delafield', cursive; font-size: 35px; color: var(--antique-gold); border: 2px solid var(--antique-gold); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--royal-navy); }
 
-        .calendar-leaf {
-            width: 100px; background: #fff; border: 3px solid var(--classic-navy);
-            border-radius: 12px; overflow: hidden; box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-            text-align: center;
-        }
-        .leaf-head { background: var(--classic-ruby); color: white; font-size: 11px; padding: 4px; font-weight: bold; border-bottom: 2px solid var(--premium-gold); }
-        .leaf-body { font-size: 36px; font-weight: 900; color: var(--classic-navy); line-height: 1.1; padding: 5px 0; font-family: 'Cairo'; }
-        .leaf-footer { font-size: 11px; padding: 4px 0; color: var(--classic-gold); font-weight: bold; background: #f8fafc; }
+        /* أماكن الصور في الترويسة */
+        .ministry-logo, #logo-preview { height: 38px; width: auto; border: 1px dashed var(--antique-gold); background: #fff; padding: 2px; border-radius: 6px; object-fit: contain; }
+        .user-photo, #photo-preview { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--antique-gold); object-fit: cover; background: #fff; }
 
-        .header-tables-wrapper { display: flex; flex-direction: column; gap: 5px; align-items: center; }
-        .mini-table { border-collapse: collapse; background: #fff; width: 300px; }
-        .mini-table td, .mini-table th { border: 1.5px solid var(--classic-navy); font-size: 11px; text-align: center; height: 22px; padding: 0 4px; }
-        .mini-table th { background: var(--classic-navy); color: var(--premium-gold); font-weight: 900; }
-        .day-active { background: var(--classic-ruby) !important; color: white !important; font-weight: 900; }
+        .date-badge { text-align: center; background: white; border: 2px solid var(--royal-navy); border-radius: 8px; min-width: 70px; cursor: pointer; }
+        .date-month { background: var(--deep-ruby); color: white; font-size: 11px; padding: 2px; }
+        .date-day { font-size: 28px; font-weight: 900; color: var(--royal-navy); line-height: 1; }
 
-        .main-content { display: grid; grid-template-columns: 1fr 280px 220px; gap: 12px; flex: 1; min-height: 0; }
-        .section-column { display: flex; flex-direction: column; min-height: 0; }
-        .section-title { font-size: 10px; font-weight: 900; color: #fff; background: var(--classic-navy); padding: 5px 8px; margin-bottom: 6px; border-right: 4px solid var(--classic-gold); }
+        .day-label { background: var(--antique-gold); color: white; font-family: 'Cairo'; font-size: 14px; padding: 2px 15px; border-radius: 15px 15px 0 0; display: inline-block; margin-top: 5px; }
 
-        .prep-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); gap: 8px; flex: 1; }
-        .lesson-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; flex: 1; }
-        
-        .prep-card-empty, .lesson-card { border: 1px solid #cbd5e1; display: flex; flex-direction: column; background: #fff; border-radius: 4px; overflow: hidden; }
-        .lined-area { background-image: repeating-linear-gradient(white, white 19px, var(--line-color) 20px); line-height: 20px; padding: 0 8px; flex: 1; }
+        .horizontal-schedule { width: 100%; border-collapse: collapse; margin-top: 5px; }
+        .horizontal-schedule th { background: var(--royal-navy); color: white; font-size: 10px; border: 1px solid var(--antique-gold); padding: 6px 2px; }
+        .horizontal-schedule td { border: 1px solid var(--antique-gold); height: 35px; background: white; text-align: center; }
 
-        .task-list { border: 1px solid #eee; border-top: 2px solid var(--classic-ruby); flex: 1; background: #fff; }
-        .task-row { display: flex; align-items: center; height: 22px; border-bottom: 1px solid #f1f5f9; padding: 0 8px; }
-        .checkbox-box { width: 12px; height: 12px; border: 1.5px solid var(--classic-ruby); margin-left: 10px; border-radius: 2px; }
-        .task-line { flex-grow: 1; border-bottom: 1px dashed #cbd5e1; height: 1px; margin-top: 6px; }
+        .section-header { background: var(--royal-navy); color: var(--antique-gold); padding: 4px 10px; font-family: 'Cairo'; font-size: 12px; font-weight: bold; border-right: 5px solid var(--antique-gold); margin: 8px 0; }
 
-        /* تعديلات التقويمات السفلية لضمان عدم القطع */
-        .footer-timeline { height: 100px; display: flex; justify-content: space-between; gap: 4px; margin-top: 10px; border-top: 1px solid #eee; padding-top: 8px; }
-        .month-mini { flex: 1; border: 1px solid #cbd5e1; font-size: 7px; text-align: center; background: #fff; border-radius: 4px; overflow: hidden; min-height: 90px; }
-        .month-header { font-weight: 900; padding: 2px; font-size: 8px; color: #fff !important; }
-        
-        .month-mini:nth-child(3n+1) .month-header { background: var(--classic-navy); }
-        .month-mini:nth-child(3n+2) .month-header { background: var(--classic-ruby); }
-        .month-mini:nth-child(3n+3) .month-header { background: var(--classic-gold); }
+        .notes-area { flex: 1; background: white; border: 1px solid #d1c7a7; padding: 5px; position: relative; }
+        .lines { background-image: repeating-linear-gradient(transparent, transparent 27px, var(--line-tan) 28px); line-height: 28px; height: 100%; }
 
-        .cal-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-        .cal-table td { height: 11px; border: 0.1px solid #f1f5f9; font-size: 7px; padding: 0; line-height: 11px; }
-        
-        .highlighted-week { background-color: var(--highlight-week) !important; }
-        .today-mark { background: var(--classic-navy) !important; color: white !important; font-weight: 900; border-radius: 2px; }
-        .event-mark { background: var(--event-color) !important; color: black !important; font-weight: bold; }
+        /* التفاعل في التقويم الصغير */
+        .mini-cal-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 10px; }
+        .mini-month { border: 1px solid var(--antique-gold); background: white; font-size: 8px; text-align: center; }
+        .mini-month-title { background: var(--royal-navy); color: var(--antique-gold); padding: 2px; font-size: 9px; cursor: pointer; }
+        .mini-month td { cursor: pointer; transition: 0.2s; }
+        .mini-month td:hover:not(:empty) { background: var(--antique-gold) !important; color: white !important; }
 
-        .finance-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
-        .finance-table th { background: var(--classic-navy); color: var(--premium-gold); border: 1px solid var(--classic-gold); padding: 6px; font-size: 11px; }
-        .finance-table td { border: 1px solid #ddd; height: 28px; font-size: 11px; text-align: center; }
+        .day-event { background: var(--deep-ruby) !important; color: white !important; border-radius: 2px; font-weight: bold; }
+        .day-salary { background: var(--salary-green) !important; color: white !important; border-radius: 2px; }
+        .day-weekend { background: var(--weekend-bg); color: #bbb; }
 
-        footer { height: 50px; display: flex; justify-content: space-between; align-items: center; font-size: 10px; font-weight: bold; color: #64748b; border-top: 1px solid #f1f5f9; margin-top: 5px; }
-        .footer-events-strip { display: flex; align-items: center; gap: 6px; flex-grow: 1; margin: 0 10px; overflow: hidden; justify-content: center; flex-wrap: wrap; }
-        .event-chip { display: flex; align-items: center; background: #fef3c7; border: 1px solid var(--event-color); padding: 1px 5px; border-radius: 4px; font-size: 8px; white-space: nowrap; color: #92400e; }
-        
-        .sig-container { display: flex; align-items: center; }
-        .sig-text { font-family: 'Mrs Saint Delafield', cursive; font-size: 32px; color: var(--classic-navy); border-bottom: 1.5px solid var(--premium-gold); padding: 0 10px; white-space: nowrap; line-height: 0.8; }
+        .signature-fluid { font-family: 'Mrs Saint Delafield', cursive; font-size: 42px; color: var(--royal-navy); opacity: 0.8; transform: rotate(-5deg); }
+
+        .finance-table { width: 100%; border-collapse: collapse; flex: 1; }
+        .finance-table th { background: var(--royal-navy); color: white; font-size: 11px; border: 1px solid var(--antique-gold); padding: 8px; }
+        .finance-table td { border: 1px solid var(--antique-gold); background: white; height: 30px; }
+
+        footer { border-top: 1px solid var(--antique-gold); padding-top: 5px; margin-top: auto; font-size: 11px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--royal-navy); }
+        .event-text { color: var(--deep-ruby); font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="dashboard no-print">
-        <h2 style="margin:0; color:var(--classic-navy)">سجل الإبداع الفني 2026</h2>
-        <p>إصدار ورقة النتيجة (من 25 يناير إلى يوليو)</p>
-        <button class="btn-modern" onclick="generate()">توليد السجل الكامل</button>
+        <h2 style="font-family:'Cairo'; color:var(--royal-navy); margin:0 0 10px 0;">سجل الفنون التشكيلية التفاعلي 2026</h2>
+
+        <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+            <button class="btn-premium" onclick="generate()">توليد السجل وتفعيل الانتقال</button>
+            <button class="btn-premium" style="background:var(--deep-ruby)" onclick="window.print()">طباعة السجل PDF</button>
+
+            <!-- أزرار تحميل الصور المحلية -->
+            <label class="btn-premium" title="تحميل شعار الوزارة">
+                تحميل شعار الوزارة
+                <input id="logo-input" type="file" accept="image/*">
+            </label>
+
+            <label class="btn-premium" title="تحميل الصورة الشخصية">
+                تحميل الصورة الشخصية
+                <input id="photo-input" type="file" accept="image/*">
+            </label>
+        </div>
+
+        <!-- معاينات فورية -->
+        <div class="preview-row">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-family:'Cairo'; font-weight:700; color:var(--royal-navy);">معاينة الشعار:</span>
+                <img id="logo-preview" alt="معاينة الشعار">
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-family:'Cairo'; font-weight:700; color:var(--royal-navy);">معاينة الصورة:</span>
+                <img id="photo-preview" alt="معاينة الصورة">
+            </div>
+        </div>
+
+        <p style="font-size:12px; margin-top:10px;">* اضغط على أي تاريخ في التقاويم الصغيرة للانتقال السريع لصفحة اليوم.</p>
     </div>
 
     <div id="print-area"></div>
 
     <script>
-        const educationalEvents = {
-            "2026-01-01": "رأس السنة الميلادية",
-            "2026-01-11": "تولي السلطان هيثم",
-            "2026-02-01": "بداية الفصل الدراسي 2",
-            "2026-02-16": "ذكرى الإسراء والمعراج",
-            "2026-03-20": "بداية شهر رمضان المبارك",
-            "2026-03-22": "إجازة منتصف الفصل",
-            "2026-03-31": "عيد الفطر السعيد",
-            "2026-05-17": "امتحانات (1-4)",
-            "2026-05-24": "امتحانات (5-11)",
-            "2026-06-04": "نهاية عام الطلاب",
-            "2026-06-06": "عيد الأضحى المبارك",
-            "2026-06-26": "رأس السنة الهجرية",
-            "2026-07-01": "إجازة الكادر التدريسي"
+        /* أحداث ثابتة كما هي (لن يظهر يوليو بعد الآن) */
+        const events = {
+            "1-11": "مناسبة: ذكرى تولي جلالة السلطان هيثم بن طارق المعظم",
+            "1-15": "مناسبة: ذكرى الإسراء والمعراج",
+            "2-1": "حدث: بداية الفصل الدراسي الثاني",
+            "2-24": "مناسبة: يوم المعلم العماني",
+            "3-1": "حدث: بداية شهر رمضان المبارك (تقديرياً)",
+            "3-30": "مناسبة: عيد الفطر السعيد (تقديرياً)"
+            // "7-1": "حدث: بدء إجازة الكادر الإداري والتدريسي" // تم استبعاده مع حذف يوليو
         };
 
-        const monthNames = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو"];
-        const workDaysLabels = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
-        const shortDays = ['أحد', 'إثن', 'ثلا', 'أرب', 'خميس'];
+        /* حذف يوليو: نكتفي بالأشهر من يناير إلى يونيو */
+        const monthNames = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو"];
 
-        function buildCal(y, m, actD) {
-            let lastDate = new Date(y, m + 1, 0).getDate(); 
-            let html = `<div class="month-mini"><div class="month-header">${monthNames[m]}</div><table class="cal-table">`;
-            html += `<tr>${shortDays.map(d => `<th style="font-size:6px; background:#f8fafc; font-weight:normal">${d}</th>`).join('')}</tr>`;
-            
-            let weekStart = null, weekEnd = null;
-            if (actD && actD.getMonth() === m) {
-                let currentDay = actD.getDate();
-                let dayOfWeek = actD.getDay(); 
-                weekStart = currentDay - dayOfWeek;
-                weekEnd = weekStart + 4;
-            }
+        /* تحويل التوقيت إلى 12 ساعة (ص/م) */
+        const scheduleTimes = [
+            "7:35 ص - 8:15 ص",
+            "8:20 ص - 9:00 ص",
+            "9:05 ص - 9:45 ص",
+            "9:50 ص - 10:30 ص",
+            "الفسحة",
+            "10:55 ص - 11:35 ص",
+            "11:40 ص - 12:20 م",
+            "12:25 م - 1:05 م",
+            "1:10 م - 1:50 م"
+        ];
 
+        /* تخزين صور الشعار والصورة الشخصية (تعمل قبل/بعد التوليد) */
+        let ministryLogoDataUrl = localStorage.getItem('ministryLogo') || "";
+        let userPhotoDataUrl = localStorage.getItem('userPhoto') || "";
+
+        function scrollToId(id) {
+            const el = document.getElementById(id);
+            if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function getSalaryDay(m) {
+            let d = new Date(2026, m, 23);
+            return (d.getDay() === 5 || d.getDay() === 6) ? 21 : 23;
+        }
+
+        function buildMiniCal(m) {
+            let html = `<div class="mini-month">
+                <div class="mini-month-title" onclick="scrollToId('month-fin-${m}')">${monthNames[m]}</div>
+                <table style="width:100%; border-collapse:collapse;"><tr>`;
+            ['ح','ن','ث','ر','خ','ج','س'].forEach(d => html += `<td style="font-weight:bold; font-size:7px;">${d}</td>`);
+            html += `</tr>`;
+
+            let days = new Date(2026, m + 1, 0).getDate();
+            let first = new Date(2026, m, 1).getDay();
             let day = 1;
-            // بناء 6 صفوف دائماً لضمان تناسق الشكل وعدم القطع
-            for (let i = 0; i < 6; i++) {
-                let cells = [];
-                for (let j = 0; j < 7; j++) {
-                    let dateObj = new Date(y, m, day);
-                    let cellClass = ''; let dayText = '';
-                    
-                    if (dateObj.getDay() === j && day <= lastDate) {
-                        let dateKey = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                        if (educationalEvents[dateKey]) cellClass = 'event-mark';
-                        else if (weekStart !== null && day >= weekStart && day <= weekEnd) cellClass = 'highlighted-week';
-                        if (actD && day === actD.getDate() && actD.getMonth() === m) cellClass = 'today-mark';
-                        dayText = day; day++;
+
+            for(let i=0; i<6; i++) {
+                html += `<tr>`;
+                for(let j=0; j<7; j++) {
+                    if((i===0 && j < first) || day > days) html += `<td></td>`;
+                    else {
+                        let dateKey = `${m+1}-${day}`;
+                        let cls = "";
+                        if (j >= 5) cls = "day-weekend";
+                        if (day === getSalaryDay(m)) cls = "day-salary";
+                        if (events[dateKey]) cls = "day-event";
+
+                        html += `<td class="${cls}" onclick="scrollToId('day-${m+1}-${day}')">${day}</td>`;
+                        day++;
                     }
-                    // فقط نأخذ أيام العمل (أحد-خميس) للعرض المصغر إذا أردت، أو الكل للتناسق
-                    if (j >= 0 && j <= 4) cells.push({ text: dayText, className: cellClass });
                 }
-                html += `<tr>${cells.map(c => `<td class="${c.className}">${c.text}</td>`).join('')}</tr>`;
+                html += `</tr>`; if(day > days) break;
             }
             return html + `</table></div>`;
         }
 
-        function getAllEventsStrip() {
-            let strip = '<div class="footer-events-strip">';
-            for (let key in educationalEvents) {
-                let evDate = new Date(key);
-                strip += `<div class="event-chip"><b>${evDate.getDate()} ${monthNames[evDate.getMonth()]}</b> ${educationalEvents[key]}</div>`;
-            }
-            return strip + '</div>';
+        function headerHTML(m, day) {
+            return `
+            <header>
+                <div style="display:flex; align-items:center; gap:10px">
+                    <img class="ministry-logo" src="${ministryLogoDataUrl || ''}" alt="شعار الوزارة">
+                    <div class="initials-logo">MYH</div>
+                    <div style="font-family:'Cairo'; font-size:14px; font-weight:900;">محمد ياسين حلمي</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px">
+                    <img class="user-photo" src="${userPhotoDataUrl || ''}" alt="الصورة الشخصية">
+                    <div class="date-badge" onclick="scrollToId('month-fin-${m}')">
+                        <div class="date-month">${monthNames[m]}</div>
+                        <div class="date-day">${day}</div>
+                    </div>
+                </div>
+            </header>`;
         }
 
         function generate() {
             const area = document.getElementById('print-area');
             let output = '';
-            let d = new Date(2026, 0, 25);
-            let endOfPeriod = new Date(2026, 6, 31);
-            const fullEventsHtml = getAllEventsStrip();
 
-            while (d <= endOfPeriod) {
-                const dayIdx = d.getDay();
-                if (dayIdx >= 0 && dayIdx <= 4) {
-                    const dayName = d.toLocaleDateString('ar-EG', { weekday: 'long' });
-                    const mName = monthNames[d.getMonth()];
-                    const dayNum = d.getDate();
-                    
-                    let timeline = monthNames.map((_, i) => buildCal(2026, i, d)).join('');
+            for (let m = 0; m < monthNames.length; m++) {
+                let daysInMonth = new Date(2026, m + 1, 0).getDate();
 
-                    output += `
-                    <div class="page-container">
-                        <header>
-                            <div class="logo-box">
-                                <div class="myh-logo">MYH</div>
-                                <div class="official-name">الأستاذ محمد ياسين حلمي<span>سجل الفنون التشكيلية 2026</span></div>
-                            </div>
-                            <div class="header-tables-wrapper">
-                                <table class="mini-table">
-                                    <tr><th>الحصة</th> ${Array(8).fill('<td></td>').join('')} </tr>
-                                    <tr><th style="background:#f1f5f9; color:var(--classic-navy)">الصف</th> ${Array(8).fill('<td></td>').join('')} </tr>
+                for (let day = 1; day <= daysInMonth; day++) {
+                    let d = new Date(2026, m, day);
+                    let weekDay = d.getDay();
+
+                    // استبعاد الجمعة والسبت
+                    if (weekDay !== 5 && weekDay !== 6) {
+                        const dateKey = `${m+1}-${day}`;
+                        const dayNameAr = ["الأحد", "الأثنين", "الثلاثاء", "الأربعاء", "الخميس"][weekDay];
+
+                        output += `
+                        <div class="spread-container" id="day-${m+1}-${day}">
+                            <div class="page-container">
+                                ${headerHTML(m, day)}
+                                <div class="day-label">${dayNameAr}</div>
+                                <table class="horizontal-schedule">
+                                    <thead><tr>${scheduleTimes.map(t => `<th>${t}</th>`).join('')}</tr></thead>
+                                    <tbody><tr>${Array(9).fill('<td></td>').join('')}</tr></tbody>
                                 </table>
-                                <table class="mini-table">
-                                    <tr style="background:#f8fafc">
-                                        ${workDaysLabels.map(day => `<td class="${dayName === day ? 'day-active' : ''}" style="font-weight:bold; width:20%">${day}</td>`).join('')}
-                                    </tr>
-                                </table>
+                                <div class="section-header">التحضير الذهني والوسائل</div>
+                                <div class="notes-area"><div class="lines"></div></div>
+                                <div class="mini-cal-container">${[0,1,2].map(mm => buildMiniCal(mm)).join('')}</div>
+                                <footer>
+                                    <span class="event-text">${events[dateKey] || "يوم عمل اعتيادي"}</span>
+                                    <div class="signature-fluid">Mo.Yasin</div>
+                                </footer>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 15px; justify-content: flex-end;">
-                                <div style="text-align:left;">
-                                    <div style="font-size:16px; font-weight:900; color:var(--classic-navy)">${dayName}</div>
-                                    <div style="font-size:10px; color:var(--classic-gold); font-weight:bold">سلطنة عمان</div>
+
+                            <div class="page-container">
+                                <div class="section-header" style="background:var(--deep-ruby)">المهام اليومية</div>
+                                <div style="display: grid; grid-template-columns: 40px 1fr; gap: 10px; flex: 1;">
+                                    <div style="display:flex; flex-direction:column; border-left:1px dashed var(--antique-gold)">
+                                        ${Array(14).fill('<div style="height:30px; border-bottom:1px solid #eee; display:flex; align-items:center;"><div style="width:15px; height:15px; border:1px solid var(--royal-navy)"></div></div>').join('')}
+                                    </div>
+                                    <div class="notes-area"><div class="lines"></div></div>
                                 </div>
-                                <div class="calendar-leaf">
-                                    <div class="leaf-head">${mName} 2026</div>
-                                    <div class="leaf-body">${dayNum}</div>
-                                    <div class="leaf-footer">يوم الإبداع</div>
-                                </div>
+                                <div class="section-header">توجيهات فنية</div>
+                                <div style="height:80px; background:white; border:1px solid #ddd; margin-bottom:10px"></div>
+                                <div class="mini-cal-container">${[3,4,5].map(mm => buildMiniCal(mm)).join('')}</div>
+                                <footer><span>سجل 2026 المطور</span><div style="text-align:left">نهاية الدوام 13:50</div></footer>
                             </div>
-                        </header>
-                        <div class="main-content">
-                            <div class="section-column">
-                                <div class="section-title">مساحة العمل والتحضير الفني</div>
-                                <div class="prep-grid">${Array(8).fill(0).map(() => `<div class="prep-card-empty"><div class="lined-area"></div></div>`).join('')}</div>
-                            </div>
-                            <div class="section-column">
-                                <div class="section-title" style="background:#064e3b">${dayIdx === 0 ? 'خريطة دروس الأسبوع' : 'ملاحظات التنفيذ والتقييم'}</div>
-                                ${dayIdx === 0 ? `<div class="lesson-grid">${Array(8).fill(0).map(() => `<div class="lesson-card"><div class="lined-area"></div></div>`).join('')}</div>` : `<div class="lined-area" style="border:1px solid #eee;"></div>`}
-                            </div>
-                            <div class="section-column">
-                                <div class="section-title" style="background:var(--classic-ruby)">قائمة المهام اليومية</div>
-                                <div class="task-list">${Array(20).fill(0).map(() => `<div class="task-row"><div class="checkbox-box"></div><div class="task-line"></div></div>`).join('')}</div>
-                            </div>
-                        </div>
-                        <div class="footer-timeline">${timeline}</div>
-                        <footer>
-                            <div class="sig-container">
-                                <div class="sig-text">Mo.Yasin</div>
-                            </div>
-                            ${fullEventsHtml}
-                            <div style="font-size:9px">الفنون التشكيلية 2026</div>
-                        </footer>
-                    </div>`;
+                        </div>`;
+                    }
                 }
-                d.setDate(d.getDate() + 1);
-            }
 
-            // صفحات التقارير المالية الشهرية
-            monthNames.forEach((mName, idx) => {
+                // صفحة الماليات الشهرية
                 output += `
-                <div class="page-container">
-                    <header>
-                        <div class="logo-box">
-                            <div class="myh-logo">MYH</div>
-                            <div class="official-name">كشف المصروفات والدخل الشهرية<span>شهر ${mName} 2026</span></div>
-                        </div>
-                        <div class="header-tables-wrapper"></div>
-                        <div style="flex:1"></div>
-                    </header>
-                    <div style="display: grid; grid-template-columns: 220px 1fr; gap: 20px; flex: 1;">
-                        <div class="section-column">
-                            <div class="section-title">تقويم الشهر</div>
-                            <div style="margin-bottom:20px">${buildCal(2026, idx, null)}</div>
-                            <div class="section-title" style="background:var(--classic-gold)">ملخص الشهر</div>
-                            <div style="border:2px solid var(--classic-gold); padding:10px; border-radius:5px;">
-                                <div style="margin-bottom:8px; font-size:12px">إجمالي الدخل: .................</div>
-                                <div style="margin-bottom:8px; font-size:12px">إجمالي المصاريف: .............</div>
-                                <div style="font-weight:900; color:var(--classic-ruby); font-size:12px">الصافي: .......................</div>
-                            </div>
-                        </div>
-                        <div class="section-column">
-                            <div class="section-title" style="background:var(--classic-navy)">جدول القيود المالية</div>
-                            <table class="finance-table">
-                                <thead><tr><th width="10%">اليوم</th><th width="12%">التاريخ</th><th width="38%">البيان</th><th width="13%">دخل (+)</th><th width="13%">صرف (-)</th><th width="14%">الرصيد</th></tr></thead>
-                                <tbody>${Array(16).fill(0).map(() => `<tr><td></td><td> / </td><td></td><td></td><td></td><td></td></tr>`).join('')}</tbody>
-                            </table>
-                        </div>
+                <div class="spread-container" id="month-fin-${m}">
+                    <div class="page-container">
+                        <div class="section-header" style="background:var(--salary-green)">الملخص المالي لشهر ${monthNames[m]}</div>
+                        <table class="finance-table">
+                            <thead><tr><th>التاريخ</th><th>البيان</th><th>صرف</th><th>دخل</th></tr></thead>
+                            <tbody>${Array(18).fill('<tr><td></td><td></td><td></td><td></td></tr>').join('')}</tbody>
+                        </table>
+                        <footer><div class="signature-fluid">Mo.Yasin</div></footer>
                     </div>
-                    <footer>
-                        <div class="sig-container">
-                            <div class="sig-text">Mo.Yasin</div>
+                    <div class="page-container">
+                        <div class="section-header">ملاحظات الميزانية والمشتريات</div>
+                        <div class="notes-area"><div class="lines"></div></div>
+                        <div style="padding:20px; display:flex; justify-content:center; flex-direction:column; align-items:center;">
+                            <p style="font-family:'Cairo'; font-weight:bold; color:var(--royal-navy)">تقويم الشهر</p>
+                            ${buildMiniCal(m)}
                         </div>
-                        ${fullEventsHtml}
-                        <div>سجل الإبداع - ${mName}</div>
-                    </footer>
+                        <footer><span>الفنون التشكيلية</span><span>2026</span></footer>
+                    </div>
                 </div>`;
-            });
+            }
             area.innerHTML = output;
+
+            // بعد التوليد، تأكد من تطبيق الصور (إن كانت محمّلة سابقًا)
+            updateImages();
         }
+
+        /* تحديث جميع الصور عبر المستند */
+        function updateImages() {
+            if (ministryLogoDataUrl) {
+                document.querySelectorAll('.ministry-logo').forEach(img => img.src = ministryLogoDataUrl);
+                const lp = document.getElementById('logo-preview');
+                if (lp) lp.src = ministryLogoDataUrl;
+            }
+            if (userPhotoDataUrl) {
+                document.querySelectorAll('.user-photo').forEach(img => img.src = userPhotoDataUrl);
+                const pp = document.getElementById('photo-preview');
+                if (pp) pp.src = userPhotoDataUrl;
+            }
+        }
+
+        /* تحميل الصور محليًا وتخزينها */
+        function handleImageUpload(input, type) {
+            const file = input.files && input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                if (type === 'logo') {
+                    ministryLogoDataUrl = reader.result;
+                    localStorage.setItem('ministryLogo', ministryLogoDataUrl);
+                } else {
+                    userPhotoDataUrl = reader.result;
+                    localStorage.setItem('userPhoto', userPhotoDataUrl);
+                }
+                updateImages();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ربط الأحداث عند التحميل
+        window.addEventListener('DOMContentLoaded', () => {
+            const logoInput = document.getElementById('logo-input');
+            const photoInput = document.getElementById('photo-input');
+            if (logoInput) logoInput.addEventListener('change', (e) => handleImageUpload(e.target, 'logo'));
+            if (photoInput) photoInput.addEventListener('change', (e) => handleImageUpload(e.target, 'photo'));
+            // إظهار المعاينة المخزنة مسبقًا إن وجدت
+            updateImages();
+        });
     </script>
 </body>
 </html>
